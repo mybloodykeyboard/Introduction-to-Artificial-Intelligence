@@ -1,0 +1,29 @@
+// Apple-inspired color scheme for Just-the-Docs
+
+$body-font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+  "SF Pro Text", "Helvetica Neue", "Apple SD Gothic Neo", system-ui, sans-serif;
+$mono-font-family: "SF Mono", "JetBrains Mono", ui-monospace, "Menlo", monospace;
+
+$root-font-size: 16px;
+$body-line-height: 1.6;
+$content-line-height: 1.7;
+
+// Surfaces
+$body-background-color: #ffffff;
+$sidebar-color: #fbfbfd;
+$search-background-color: #ffffff;
+$table-background-color: #ffffff;
+$code-background-color: #f5f5f7;
+
+// Text
+$body-text-color: #1d1d1f;
+$body-heading-color: #1d1d1f;
+$nav-child-link-color: #515154;
+
+// Accent (Apple blue)
+$link-color: #0066cc;
+$btn-primary-color: #0071e3;
+
+// Lines
+$border-color: #e3e3e6;
+$feedback-color: #f5f5f7;

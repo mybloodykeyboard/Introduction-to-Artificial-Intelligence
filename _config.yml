@@ -22,7 +22,7 @@ search:
 
 # 네비게이션
 heading_anchors: true
-color_scheme: light
+color_scheme: apple
 
 # 상단 우측 보조 링크
 aux_links:

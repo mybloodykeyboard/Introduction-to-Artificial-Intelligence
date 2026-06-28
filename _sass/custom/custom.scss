@@ -10,17 +10,48 @@ body {
   letter-spacing: -0.003em;
 }
 
-// --- Headings: tighter tracking, heavier weight ---
+// --- Headings: tighter tracking, heavier weight, consistent rhythm ---
 .main-content {
+  line-height: 1.7;
+
   h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.021em;
     font-weight: 700;
+    line-height: 1.25;
   }
+
   h1 {
     font-weight: 800;
     letter-spacing: -0.025em;
+    margin-top: 0;
+    margin-bottom: 1.25rem;
   }
-  line-height: 1.7;
+
+  h2 {
+    margin-top: 2.75rem;
+    margin-bottom: 0.9rem;
+  }
+
+  h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  // keep block elements from hugging the heading above
+  p, ul, ol {
+    margin-bottom: 1rem;
+  }
+
+  // no extra space above the first heading
+  > h1:first-child,
+  > h2:first-child {
+    margin-top: 0;
+  }
 }
 
 // Hero title on the home page
@@ -70,6 +101,10 @@ body {
 .site-title {
   font-weight: 700;
   letter-spacing: -0.02em;
+  font-size: 1rem !important;
+  line-height: 1.3;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
 }
 
 .nav-list .nav-list-item .nav-list-link {
@@ -87,11 +122,20 @@ body {
   }
 }
 
-// --- Search box ---
+// --- Search box: compact, left-aligned, proportional ---
+.search {
+  max-width: 360px;
+  margin: 0 1rem;
+  align-self: center;
+}
+
 .search-input {
+  height: 2.25rem;
+  font-size: 0.85rem;
   border-radius: 980px;
   background-color: #f0f0f2;
   border: 1px solid transparent;
+  padding-left: 2.4rem;
   transition: background-color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 
   &:focus {
@@ -99,6 +143,14 @@ body {
     border-color: #0071e3;
     box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
   }
+}
+
+.search-label {
+  height: 2.25rem;
+}
+
+.search-icon {
+  color: #86868b;
 }
 
 // --- Tables: soft, rounded, clean ---

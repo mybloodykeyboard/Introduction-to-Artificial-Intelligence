@@ -8,6 +8,7 @@ baseurl: /Introduction-to-Artificial-Intelligence
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
+  - jekyll-include-cache
 
 # 검색
 search_enabled: true

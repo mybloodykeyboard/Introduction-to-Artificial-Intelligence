@@ -8,6 +8,11 @@ $root-font-size: 16px;
 $body-line-height: 1.6;
 $content-line-height: 1.7;
 
+// Layout: wider content column, slightly wider sidebar to avoid title wrap
+$content-width: 1080px;
+$nav-width: 280px;
+$nav-width-md: 280px;
+
 // Surfaces
 $body-background-color: #ffffff;
 $sidebar-color: #fbfbfd;

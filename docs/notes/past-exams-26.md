@@ -43,11 +43,36 @@ permalink: /docs/notes/past-exams-26/
 
 ## 02. Informed & Local Search
 
-_채울 예정._
+- Informed search(h1=misplaced tiles, h2=Manhattan distance) 부분은 **01 Q1의 8-puzzle 문제가 커버** — 8-puzzle 한 문제가 01~02를 관통함.
+- Local search(hill-climbing, 8-queens 등) 단독 기출: **미확인**.
+
+> Local search 쪽 기출이 따로 있었으면 알려주면 추가.
 
 ## 03. Adversarial Search
 
-_채울 예정._
+### Q1. Tic-tac-toe 게임 트리 (그림 제시형)
+
+**문제**
+- **Tic-tac-toe 게임 트리**가 강의 PDF(`3.Adversarial_search`) 예시 그대로 제시됨.
+- (a) **minimax**로 각 노드 값을 채워 최적 수를 결정.
+- (b) 일부 탐색으로 **채워지는 칸(보드 상태 / 노드 값)을 직접 그려보는** 문제.
+
+**풀이 포인트**
+- terminal utility: 승 `+1`, 패 `−1`, 무 `0`. MAX는 자식 최대값, MIN은 자식 최소값.
+- 말단(terminal)부터 위로 `MINIMAX-VALUE`를 전파하며 각 노드 값을 채움.
+- 보드를 직접 그리는 문항은 successor(합법 수) 전개 → 각 상태의 utility/minimax 값 순으로 표기.
+- 방법론: [03. Adversarial Search]({{ site.baseurl }}/docs/lecture-notes/03-adversarial-search/)
+
+### 그 외 꼬리문제 (추정 — 미확정)
+
+실제 출제 여부 확인 안 됨. 단원·문제 성격상 가능성 높은 유형(제안):
+
+- **Alpha-beta pruning**: 같은 트리에서 `α ≥ β`로 잘리는 노드를 직접 표시. move ordering에 따른 차이.
+- **평가함수(evaluation function)**: 비종료 상태 추정, `Eval(s) = w1·f1 + w2·f2 + ...` 적용.
+- **MIN 비최적 플레이 시** MAX 결과가 minimax 값보다 나빠지지 않음을 서술.
+- **복잡도 비교**: minimax `O(b^d)` vs alpha-beta(최선) `O(b^(d/2))`.
+
+> 위는 추정. 실제로 나온 "가지 문제"가 기억나면 알려주면 확정해서 정리.
 
 ## 04. Constraint Satisfaction (CSP)
 

@@ -179,8 +179,49 @@ permalink: /docs/notes/past-exams-26/
 - 채점 포인트: 각 step의 `r + γ·max Q(s′,·)` 계산값 + 두 경로 누적 후 최종 Q 테이블.
 - 방법론: [07. Reinforcement Learning]({{ site.baseurl }}/docs/lecture-notes/07-reinforcement-learning/)
 
-> 격자 그림(상태 연결·보상·경로)을 그대로 주면 각 칸 Q값까지 정확히 계산해 채울 수 있음.
+**예제 (이해용 — 강의 표준 예제 기반. 실제 시험 그림과 세부 배치는 다를 수 있음)**
+
+2×3 격자, 목표 `S6`(우하단), γ=0.5, S6 도달 보상 100. 행동 `aij` = Si→Sj.
+
+```
+S1 ── S2 ── S3
+│     │     │
+S4 ── S5 ── S6  (goal, +100)
+```
+
+- **Episode 1** (S1→S2→S3→S6): 목표 도달로 `Q(S3,a36) = 100`. 나머지는 `max Q(s′,·) = 0`이라 아직 0.
+- **Episode 2** (S1→S2→S3→S6): `Q(S2,a23) = 0 + 0.5·max Q(S3,·) = 0.5·100 = 50`, `Q(S3,a36) = 100`.
+- 여러 episode로 모든 transition을 거치면 보상이 역전파되며 수렴.
+
+수렴 후 Q 테이블 (예제):
+
+| 목표까지 거리 | 행동 | Q값 |
+|---|---|---|
+| 1칸 | a36, a56 | 100 |
+| 2칸 | a23, a25, a45 | 50 |
+| 3칸 | a12, a14, a32, a52, a54 | 25 |
+| 4칸 | a21, a41 | 12.5 |
+
+최적 정책 `π(s) = argmax_a Q(s,a)` → 각 상태에서 Q가 가장 큰(목표 방향) 행동을 따라감.
+
+> 위는 예제임. 실제 시험 격자 그림(상태 연결·보상·경로)을 주면 그 그림 기준으로 칸별 값을 다시 채워줌.
 
 ## 08. Artificial Neural Network
 
-_채울 예정._
+### Q1. (5지선다) Backpropagation과 유사한 개념 — 기억 미확정
+
+**문제 (기억 기반)**
+- "backpropagation과 유사한 내용/개념은?" 류의 **5지선다**. 보기 중 하나가 **local search**였던 것으로 기억(미확정).
+
+**풀이 포인트 (추정)**
+- Backpropagation은 오차 `E = ½Σ(d−o)²`를 **gradient descent**로 최소화 → weight 공간에서 오차가 줄어드는 방향으로 이동하는 **local search의 일종**(local minima에 빠질 수 있음).
+- 따라서 보기에 local search(또는 gradient descent/hill-climbing)가 있으면 정답 후보일 가능성이 높음. **확정 아님.**
+
+> 보기 5개나 정확한 문구가 기억나면 알려주면 확정해서 정리.
+
+### 그 외 꼬리문제 (추정 — 미확정)
+
+- **Perceptron**으로 AND는 가능, **XOR는 불가**(linearly non-separable)인 이유를 식으로.
+- **Backpropagation** 순전파·역전파 한 스텝 계산(sigmoid 미분 `y(1−y)`, δ, 가중치 갱신).
+
+> 위는 추정. 실제 출제 문항이 기억나면 알려주면 확정.

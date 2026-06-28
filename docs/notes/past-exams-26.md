@@ -39,7 +39,7 @@ permalink: /docs/notes/past-exams-26/
 - 결론: 무정보(IDS 등) < A\*(h1) < A\*(h2). admissible을 유지하며 휴리스틱 값이 클수록 효율 ↑.
 - 방법론: [01. Uninformed Search]({{ site.baseurl }}/docs/lecture-notes/01-uninformed-search/), [02. Informed & Local Search]({{ site.baseurl }}/docs/lecture-notes/02-informed-and-local-search/)
 
-> 트리 그림을 주면 각 알고리즘의 실제 노드 확장 순서까지 정확히 채워 넣을 수 있음.
+> 시험의 트리 그림은 강의 PDF(`1.UninformedSearch`, `2-1.InformedSearch-HeuristicSearch`)의 **8-puzzle 예시 그림과 동일한 수준**. 그 예시 기준으로 각 알고리즘의 확장 순서를 따라가면 됨.
 
 ## 02. Informed & Local Search
 
@@ -51,11 +51,10 @@ _채울 예정._
 
 ## 04. Constraint Satisfaction (CSP)
 
-### Q. 4-Queens (세부 미확정)
+### Q. 4-Queens (보류)
 
-- 4-Queens 관련 문제가 출제됨 — **세부 내용 기억 미확정**.
-- 추정 유형: backtracking + forward checking 도메인 변화 추적, 또는 변수·도메인·제약 형식화.
-- 참고: [04. CSP]({{ site.baseurl }}/docs/lecture-notes/04-csp/)의 4-Queens forward checking 추적 예제(해: X1=2, X2=4, X3=1, X4=3).
+- 4-Queens 관련 문제가 출제됨 — 세부는 **보류**.
+- **4-Queens example 참고할 것**: [04. CSP]({{ site.baseurl }}/docs/lecture-notes/04-csp/)의 forward checking 추적 예제(해: X1=2, X2=4, X3=1, X4=3) 및 강의 PDF `4.ConstraintSatisfactionProblem`의 4-Queens 예시.
 
 > 기억나는 대로 알려주면 정확히 채움.
 

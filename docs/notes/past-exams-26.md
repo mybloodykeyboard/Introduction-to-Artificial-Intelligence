@@ -208,16 +208,18 @@ S4 ── S5 ── S6  (goal, +100)
 
 ## 08. Artificial Neural Network
 
-### Q1. (5지선다) Backpropagation과 유사한 개념 — 기억 미확정
+### Q1. (5지선다) Backpropagation과 유사한 개념
 
 **문제 (기억 기반)**
-- "backpropagation과 유사한 내용/개념은?" 류의 **5지선다**. 보기 중 하나가 **local search**였던 것으로 기억(미확정).
+- "backpropagation과 유사한 내용/개념은?" 류의 **5지선다**.
+- 기억나는 보기: **UCS**, **local search** (나머지 3개 미상).
 
-**풀이 포인트 (추정)**
-- Backpropagation은 오차 `E = ½Σ(d−o)²`를 **gradient descent**로 최소화 → weight 공간에서 오차가 줄어드는 방향으로 이동하는 **local search의 일종**(local minima에 빠질 수 있음).
-- 따라서 보기에 local search(또는 gradient descent/hill-climbing)가 있으면 정답 후보일 가능성이 높음. **확정 아님.**
+**정답 (추정): UCS**
+- UCS가 정답일 확률이 높음(확인된 견해).
+- 가능한 근거: UCS(= Dijkstra)와 backpropagation 모두 값을 단계적으로 전파·갱신하는 **dynamic programming** 성격을 공유. UCS는 누적비용 `g(n)`을 전방으로, backprop은 오차 δ를 후방으로 전파.
+- 참고: local search도 후보로 보일 수 있음 — backprop의 gradient descent는 weight 공간의 local search라 local minima에 빠질 수 있음. 다만 정답 견해는 **UCS** 쪽.
 
-> 보기 5개나 정확한 문구가 기억나면 알려주면 확정해서 정리.
+> 나머지 보기 3개나 정확한 문구가 기억나면 알려주면 확정.
 
 ### 그 외 꼬리문제 (추정 — 미확정)
 

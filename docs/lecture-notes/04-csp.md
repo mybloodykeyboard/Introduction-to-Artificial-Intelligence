@@ -106,6 +106,12 @@ Backtracking search = 단일 변수 할당의 DFS. CSP의 기본 무정보(uninf
 - 4-Queens forward checking 도메인 추적과 해 X1=2, X2=4, X3=1, X4=3.
 - Min-conflicts로 n-queens를 1천만 규모까지 해결.
 
+## 기출로 보는 핵심 직관
+
+- 기출 연결: 호주 지도색칠에서 **MRV·Degree·LCV + forward checking**으로 도메인 변화를 그려 추적하는 문제. [26전기 기출]({{ site.baseurl }}/docs/notes/past-exams-26/) 참고.
+- 핵심 깨달음: 일반 탐색은 상태가 블랙박스지만 CSP는 **변수·도메인·제약 구조가 보여서** ① 실패를 미리 감지(forward checking: 도메인이 비면 즉시 backtrack), ② 어려운 것부터 풂(MRV: 남은 값 최소, Degree: 제약 많이 거는 변수). 그래서 무작정 backtracking보다 훨씬 빠름.
+- 구체 직관: 지도색칠에서 초기엔 모든 도메인 크기 3으로 MRV 동률 → Degree로 **인접 5개인 SA가 먼저** 선택됨. SA를 일찍 고정하면 이웃 도메인이 확 줄어 분기 폭발(branching explosion)을 막음.
+
 ## 더 보기
 
 관련: [CSP 컨셉]({{ site.baseurl }}/docs/concepts/csp/) / 이전: [03]({{ site.baseurl }}/docs/lecture-notes/03-adversarial-search/) / 다음: [05. Classification]({{ site.baseurl }}/docs/lecture-notes/05-classification/)

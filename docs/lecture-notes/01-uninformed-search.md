@@ -84,6 +84,64 @@ permalink: /docs/lecture-notes/01-uninformed-search/
   - DFS 유리 — 해(goal)가 많음, 루프가 적음, 무한 경로가 없음, 메모리 제약이 큼(공간이 선형이라는 점이 결정적).
 - **DLS의 한계**: 깊이 제한 `L`을 미리 정하기 어렵고, 해가 `L`보다 깊으면 불완전.
 
+## 기출로 보는 핵심 직관
+
+기출은 8-puzzle 트리를 주고 **각 알고리즘이 어떤 순서로 노드를 확장하는지** 직접 추적하게 함. ([26전기 기출]({{ site.baseurl }}/docs/notes/past-exams-26/) 참고.)
+
+**핵심 깨달음**: 모든 uninformed 알고리즘의 차이는 결국 **"fringe에서 다음에 누구를 꺼내는가" 한 가지**로 환원됨. 같은 트리라도 fringe 자료구조만 바꾸면 확장 순서가 정해짐.
+
+| 알고리즘 | fringe에서 꺼내는 규칙 |
+|---|---|
+| BFS | FIFO — 가장 먼저 들어온 노드 |
+| DFS | LIFO — 가장 나중에 들어온 노드 |
+| UCS | `g(n)` 최소 — 경로비용이 가장 작은 노드 |
+
+### 확장 순서 추적 (worked trace)
+
+작은 트리. 루트 `A`의 자식 `B,C` / `B`의 자식 `D,E` / `C`의 자식 `F,G`. 자식은 왼쪽부터(`B`→`C`, `D`→`E`, `F`→`G`) fringe에 넣음.
+
+```
+        A
+       / \
+      B   C
+     / \ / \
+    D  E F  G
+```
+
+**BFS (FIFO 큐)** — 확장 순서 `A, B, C, D, E, F, G`
+
+| 확장 | 큐 상태(확장 직후) |
+|---|---|
+| A | [B, C] |
+| B | [C, D, E] |
+| C | [D, E, F, G] |
+| D | [E, F, G] |
+| E | [F, G] |
+| F | [G] |
+| G | [] |
+
+FIFO라 앞에서 꺼내고 뒤에 넣음 → 같은 깊이를 다 훑은 뒤 다음 깊이로 내려감.
+
+**DFS (LIFO 스택)** — 확장 순서 `A, B, D, E, C, F, G`
+
+| 확장 | 스택 상태(확장 직후, 위가 top) |
+|---|---|
+| A | [B, C] |
+| B | [D, E, C] |
+| D | [E, C] |
+| E | [C] |
+| C | [F, G] |
+| F | [G] |
+| G | [] |
+
+LIFO라 방금 넣은 자식을 먼저 꺼냄 → 한 가지(branch)를 끝까지 파고든 뒤 되돌아옴.
+
+같은 트리, fringe 규칙만 FIFO↔LIFO로 바꿨을 뿐인데 확장 순서가 완전히 달라짐 — 이게 위 "핵심 깨달음"의 실물.
+
+### IDS가 "반복 낭비"가 아닌 직관
+
+IDS는 깊이 제한을 1씩 늘리며 이전 깊이를 매번 다시 탐색하지만, **노드 대부분이 마지막 깊이에서 생성**되므로 재방문 비용이 작음. 트리는 깊이가 깊어질수록 그 층의 노드 수가 `b`배씩 불어나, 마지막 층 하나가 그 위 모든 층의 합보다 큼. 따라서 앞 층을 몇 번 다시 밟아도 전체 대비 미미함 (시험 포인트의 `b=10, d=5` → 약 11% 추가).
+
 ## 더 보기
 
 관련: [Search Methods 컨셉]({{ site.baseurl }}/docs/concepts/search-methods/), [예상문제]({{ site.baseurl }}/docs/notes/predicted-questions/) / 다음: [02. Informed & Local Search]({{ site.baseurl }}/docs/lecture-notes/02-informed-and-local-search/)

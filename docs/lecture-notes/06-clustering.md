@@ -108,6 +108,25 @@ Complete-link 추적 예제 (갱신식 `sim(AF,x)=min(sim(A,x),sim(F,x))`)
 - 초기 시드 민감성 + 해결책 2가지(가장 먼 문서 휴리스틱, 다회 시도/hill-climbing).
 - Linkage 추적 문제는 갱신식(max/min) 명시 + 단계별 행렬 축소 + 임계값별 절단이 채점 포인트.
 
+## 기출로 보는 핵심 직관
+
+기출 연결: ① k=2 k-means에서 **초기 시드 위치에 따라 수렴 결과가 달라짐**(centroid 계산 → 수렴), ② single-link vs complete-link 병합 추적·비교. [26전기 기출]({{ site.baseurl }}/docs/notes/past-exams-26/) 참고.
+
+핵심 깨달음 (k-means)
+
+- 본질이 **hill-climbing이라 초기 시드에 결과가 좌우됨(seed sensitivity)**.
+- centroid는 할당된 점들의 **평균**으로 이동(`μ(c)=(1/|c|)·Σx`), 할당이 더 안 바뀌면 수렴.
+- 같은 4점이라도 시드를 어디 찍느냐로 행 분리/열 분리가 갈림 → 좋은 시드(서로 먼 점)·여러 번 재시도로 완화.
+
+핵심 깨달음 (linkage)
+
+| 방식 | 갱신식 | chaining | 결과 성향 |
+|---|---|---|---|
+| Single-link | `max`(가장 가까운 쌍) | 발생 | 길고 느슨한 덩어리 |
+| Complete-link | `min`(가장 먼 쌍) | 억제 | 작고 단단 |
+
+- 갱신식 한 글자(`max` ↔ `min`) 차이가 결과 성향을 가름.
+
 ## 더 보기
 
 관련: [Clustering & Linkage]({{ site.baseurl }}/docs/concepts/clustering-and-linkage/) / 이전: [05]({{ site.baseurl }}/docs/lecture-notes/05-classification/) / 다음: [07. Reinforcement Learning]({{ site.baseurl }}/docs/lecture-notes/07-reinforcement-learning/)

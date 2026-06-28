@@ -76,6 +76,17 @@ Sigmoid 사용 시 핵심 식은 다음과 같다.
 - Q38. 단층 Perceptron의 AND 가능·XOR 불가능: AND는 W0=W1=0.3(또는 0.4)으로 충족 가능, XOR은 `0 < 0.5`, `W1 > 0.5`, `W0 > 0.5`, `W0 + W1 < 0.5`를 동시에 만족하는 W가 없어 linearly non-separable. 해결은 2~3층 MLP, 3층 Perceptron으로 근사적 해결 가능하며 Backpropagation NN의 기반.
 - Q39. Backpropagation NN 구조·학습 원리·문제점: 은닉층을 둔 단방향 신경망으로 `E = ½Σ(d−o)²`를 Gradient Descent로 최소화. `δ_pk = (d_pk−O_pk)·O_pk(1−O_pk)`로 은닉-출력 가중치를, 역전파한 `δ_pj`로 입력-은닉 가중치를 갱신(일반화된 델타 규칙, sigmoid 미분 `y(1−y)` 이용). 문제점은 역전파가 생물학적 현상과 불일치하나 가장 보편적인 학습법이라는 점.
 
+## 기출로 보는 핵심 직관
+
+기출 연결: "backpropagation과 유사한 개념"을 묻는 5지선다(보기에 UCS·local search). [26전기 기출]({{ site.baseurl }}/docs/notes/past-exams-26/) 참고.
+
+핵심 깨달음 — **backpropagation을 보는 두 관점**:
+
+1. **gradient descent = local search**: 오차 `E = ½Σ(d−o)²`를 weight 공간에서 줄여가는 탐색 → local minima에 빠질 수 있음(hill-climbing과 같은 결).
+2. **dynamic programming = 값 전파**: 출력층 오차 δ를 뒤로 전파하며 각 층 값을 갱신 → **UCS(=Dijkstra)가 누적비용 g(n)을 전방 전파**하는 것과 같은 "이미 계산한 값을 재사용해 전파" 구조. 그래서 기출에서 UCS가 정답으로 묶임.
+
+보강: perceptron은 직선 하나(선형 분리)라 XOR 불가 → hidden layer(다층)로 비선형 표현, backprop으로 학습. 이 흐름(한계→해결)이 ANN 단원의 큰 줄기다.
+
 ## 더 보기
 
 관련: [Artificial Neural Network 컨셉]({{ site.baseurl }}/docs/concepts/artificial-neural-network/) / 이전: [07]({{ site.baseurl }}/docs/lecture-notes/07-reinforcement-learning/)

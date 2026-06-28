@@ -77,6 +77,12 @@ permalink: /docs/lecture-notes/02-informed-and-local-search/
 - Relaxed problem이 admissible 휴리스틱을 생성하는 원리와 8-puzzle 사상(`h1`, `h2`).
 - Hill-climbing 한계 3가지(local maxima, plateau, ridge)와 random restart. 8-queens 14%/86% 수치, `(0.86)^n < 0.01` → 약 31회 → 약 124 스텝 계산.
 
+## 기출로 보는 핵심 직관
+
+- **기출 연결**: 8-puzzle 트리가 그림으로 제시되고, `h1`(misplaced tiles)·`h2`(Manhattan)을 적용해 A\*가 **어떤 순서로 확장**하는지, **어느 휴리스틱이 더 좋은지** 비교하는 형태로 나옴. 확장 순서는 제시된 트리에 종속되지만, 각 노드를 `f = g + h`로 매기고 `f` 최소부터 꺼내면 됨. [26전기 기출]({{ site.baseurl }}/docs/notes/past-exams-26/) 참고.
+- **핵심 깨달음**: `f = g + h`는 **"이미 쓴 비용(`g`) + 앞으로 쓸 추정(`h`)"**. admissible(`h(n) ≤ h*(n)`, 과대평가 안 함)이면 A\*는 최적해를 절대 건너뛰지 않음. 같은 admissible 휴리스틱 중 **`h` 값이 클수록(= dominate) 목표로 더 집중 → 더 적게 확장**. `h2(n) ≥ h1(n)`이라 h2(Manhattan)가 h1(misplaced)을 지배 → h2가 우월(`d = 12`에서 73 vs 227).
+- **직관 보강**: `h(n) = 0`이면 `f = g`라 A\*는 UCS와 같아짐. 반대로 `g`를 무시하고 `f = h`만 보면 Greedy이고 비최적. relaxed problem(제약 완화)의 최적비용이 admissible 휴리스틱이 되는 이유는, 제약을 빼면 비용이 같거나 작아져 원문제를 절대 과대평가할 수 없기 때문.
+
 ## 더 보기
 
 관련: [Search Methods]({{ site.baseurl }}/docs/concepts/search-methods/), [Local Search]({{ site.baseurl }}/docs/concepts/local-search/) / 이전: [01]({{ site.baseurl }}/docs/lecture-notes/01-uninformed-search/) / 다음: [03. Adversarial Search]({{ site.baseurl }}/docs/lecture-notes/03-adversarial-search/)

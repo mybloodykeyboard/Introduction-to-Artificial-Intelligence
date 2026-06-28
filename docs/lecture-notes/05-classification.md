@@ -133,6 +133,22 @@ Distance-Weighted NN과 Shepard's Method:
 - K=3 추적 4단계: 변환·스케일링 → 거리 계산 → top-k 선정 → majority voting.
 - Distance-Weighted NN(거리 역수 가중), Shepard's method(K=전체), Voronoi diagram 구분.
 
+## 기출로 보는 핵심 직관
+
+기출 연결: ① kNN으로 질의 인스턴스가 어떤 클래스인지(거리 + 다수결) ② Decision Tree Information Gain 계산해 분할 속성 선택. [26전기 기출]({{ site.baseurl }}/docs/notes/past-exams-26/) 참고.
+
+핵심 깨달음(Decision Tree): 트리 만들기 = **"매 노드에서 purity를 가장 크게 키우는 분할 반복"**. Information Gain은 분할 전후 불순도(Entropy) 감소량 → Gain 최대 속성을 고름. = 큰 이질 집단을 동질 소그룹으로 쪼개는 것.
+
+핵심 깨달음(kNN): **"비슷한 건 가까이 있다"** 가정. lazy learning — 학습 때 모델을 안 만들고 분류 시점에 거리 계산. **스케일링**이 중요한 이유: 범위 큰 축이 거리를 지배해 이웃 판정을 왜곡 → 정규화 `x' = (x−μ)/σ`로 공정하게.
+
+대비:
+
+| 구분 | Decision Tree | kNN |
+|---|---|---|
+| 학습 방식 | eager (미리 트리 구성) | lazy (분류 시점 계산) |
+| 결과 형태 | 규칙(rule) 추출 | 거리 기반 다수결 |
+| 핵심 기준 | purity (Information Gain·Gini) | 거리, 스케일 민감 |
+
 ## 더 보기
 
 - 관련: [Classification Models]({{ site.baseurl }}/docs/concepts/classification-models/)

@@ -101,6 +101,19 @@ Iteration 3 (S4 출발)
 - 학습 후 정책 `π(s) = argmax_a Q(s,a)`.
 - 계산형: 목표 인접 상태부터 γ배씩 감쇠하며 시작 쪽으로 역전파. 목표 인접 100, 2칸 50, 3칸 25, 4칸 12.5.
 
+## 기출로 보는 핵심 직관
+
+기출 연결: 실제 시험은 위 예제처럼 목표에만 100을 주는 sparse reward 형태가 아니라, **모든 transition(`a12, a23, ...`)에 즉각 보상(대략 4~20)을 준** 격자에서 경로를 따라 Q를 채우는 dense reward 문제로 나옴. [26전기 기출]({{ site.baseurl }}/docs/notes/past-exams-26/)에 dense reward worked example(경로별 Q 전파 계산) 있음.
+
+핵심 깨달음: `Q(s,a) = r + γ·max_a′ Q(s′,a′)` 는 **"이 행동의 즉각 보상 + 다음 상태에서 앞으로 받을 최선값의 할인"**. 모든 Q=0에서 시작해 episode를 반복하면, 한 episode 안에서는 목표 쪽(뒤) step부터 값이 생기고 episode를 거듭하며 그 값이 시작 쪽(앞)으로 **역방향 전파**됨. γ는 미래 보상 할인율로 목표에서 멀수록 영향이 작아짐.
+
+sparse vs dense 차이:
+
+- sparse(목표에만 100): 목표 인접 Q부터 γ배씩 감쇠하며 전파 — 100 → 50 → 25 → 12.5 (위 계산 예제).
+- dense(매 transition 보상): 각 `Q(s,a) = r + γ·다음 상태 최선 Q`로 채워져, 경로별 누적값이 칸마다 보임. 즉각 보상이 매 step에 있으므로 목표 인접만 의미 있는 게 아니라 모든 칸이 채워짐.
+
+학습 후 정책은 두 경우 모두 `π(s) = argmax_a Q(s,a)`.
+
 ## 더 보기
 
 - 관련: [Reinforcement Learning 컨셉]({{ site.baseurl }}/docs/concepts/reinforcement-learning/)

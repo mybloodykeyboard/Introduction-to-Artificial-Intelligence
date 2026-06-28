@@ -149,9 +149,37 @@ permalink: /docs/notes/past-exams-26/
 - 핵심: 이 결과는 **초기 시드 배치에 종속**. 시드를 위-왼/위-오(같은 행)로 찍었으면 좌/우(열) 분리로 수렴 → **k-means seed sensitivity** 예시. 해결: 좋은 시드 휴리스틱(서로 먼 점) 또는 여러 번 재시도.
 - 방법론: [06. Clustering]({{ site.baseurl }}/docs/lecture-notes/06-clustering/)
 
+### Q2. HAC — single-link vs complete-link 차이와 계산
+
+**문제**
+- 클러스터 간 유사도 행렬이 주어지고, **single-link**와 **complete-link**로 병합 순서를 추적하고 **차이를 비교**.
+
+**풀이 포인트**
+- **Single-link**: 두 클러스터 유사도 = 가장 유사한 쌍, 갱신 `sim(AB,X) = max(sim(A,X), sim(B,X))` → chaining effect, 크고 느슨한 소수 클러스터.
+- **Complete-link**: 유사도 = 가장 덜 유사한 쌍, 갱신 `sim(AB,X) = min(...)` → 작고 단단한 다수 클러스터.
+- 매 단계 행렬에서 **가장 큰 유사도 쌍을 병합** → 갱신식으로 행렬 축소 → 반복.
+- 강의 예제(A~F): single-link 병합 `AF(0.9) → AEF → ABEF → ABDEF → 전체`, complete-link는 `min` 갱신으로 다른 순서. 임계값별 절단으로 클러스터 개수 달라짐.
+- 채점 포인트: max/min 갱신식 명시 + 단계별 행렬 축소 + 두 방식 결과 성향 비교.
+- 방법론: [06. Clustering]({{ site.baseurl }}/docs/lecture-notes/06-clustering/), [Clustering & Linkage]({{ site.baseurl }}/docs/concepts/clustering-and-linkage/)
+
 ## 07. Reinforcement Learning
 
-_채울 예정._
+### Q1. Q-learning 격자 — 경로별 Q 전파 계산
+
+**문제**
+- 강의 RL example(6칸 격자, 목표 S6, γ=0.5, 도달 보상 100) **그대로** 제시.
+- 모든 행동의 Q값(`a12, a21, a22, ...`)을 채우고, 주어진 경로를 따라 어떻게 학습되는지 계산.
+- 구체적으로 한 경로 **S4 → S1 → S2 → S5 → S6 → S3** 를 먼저 계산하고, **또 다른 경로** 하나를 계산해 **최종 Q값 변화**를 보이는 문제.
+
+**풀이 포인트**
+- 갱신식: `Q(s,a) = r(s,a) + γ·max_a′ Q(s′,a′)`, γ=0.5. 모든 Q는 0으로 초기화.
+- episode마다 경로를 따라가며 각 step에서 갱신, `s = s′`로 이동.
+- 보상은 목표 인접 상태부터 역방향으로 γ배씩 감쇠하며 전파됨 → 경로가 누적될수록 더 많은 칸이 채워짐.
+- 강의 예시 수렴 결과(참고): 목표 인접 `100`, 두 칸 거리 `50`, 세 칸 `25`, 네 칸 `12.5`.
+- 채점 포인트: 각 step의 `r + γ·max Q(s′,·)` 계산값 + 두 경로 누적 후 최종 Q 테이블.
+- 방법론: [07. Reinforcement Learning]({{ site.baseurl }}/docs/lecture-notes/07-reinforcement-learning/)
+
+> 격자 그림(상태 연결·보상·경로)을 그대로 주면 각 칸 Q값까지 정확히 계산해 채울 수 있음.
 
 ## 08. Artificial Neural Network
 

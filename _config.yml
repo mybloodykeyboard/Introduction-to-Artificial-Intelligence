@@ -39,7 +39,7 @@ gh_edit_branch: "main"
 gh_edit_view_mode: "tree"
 
 # 푸터
-footer_content: "인공지능 개론 시험 정리 · 본인 학습용"
+footer_content: "인공지능 개론 시험 정리 · 본인 학습용 · 일부 내용 passa8837 블로그 참고·인용"
 
 exclude:
   - Gemfile

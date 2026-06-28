@@ -12,6 +12,8 @@ permalink: /docs/notes/model-answers/
 기출·예상 서술형 문항의 모범답안 + 채점 포인트 + 암기 한줄 요약.
 {: .fs-5 .fw-300 }
 
+> **출처**: 이 페이지의 문항·모범답안·채점 포인트·한줄 요약은 [passa8837의 인공지능 개론 정리 블로그](https://passa8837.github.io/Introduction-to-Artificial-Intelligence/doc/기출문제-모범답안.html) 내용을 거의 그대로 가져와 정리한 것임.
+
 <details open markdown="block">
   <summary>목차</summary>
 {: .text-delta }

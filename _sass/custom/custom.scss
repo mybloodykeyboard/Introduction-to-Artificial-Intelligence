@@ -131,6 +131,8 @@ body {
 
 .search-input {
   height: 2.25rem;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 0.85rem;
   border-radius: 980px;
   background-color: #f0f0f2;
@@ -147,6 +149,8 @@ body {
 
 .search-label {
   height: 2.25rem;
+  top: 50%;
+  transform: translateY(-50%);
   padding-left: 0.85rem;
   align-items: center;
 }

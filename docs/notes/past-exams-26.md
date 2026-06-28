@@ -101,7 +101,32 @@ permalink: /docs/notes/past-exams-26/
 
 ## 05. Classification (Decision Tree · kNN)
 
-_채울 예정._
+### Q1. kNN 분류 (KNN Example 유형)
+
+**문제**
+- 데이터셋이 제시되고, 질의(query) 인스턴스가 **어떤 클래스로 분류**되는지 적기.
+- 강의 **kNN Example**(PlayTennis, K=3) 수준.
+
+**풀이 포인트**
+- 범주형 속성 → 숫자 변환, 필요 시 정규화 `x' = (x−μ)/σ`.
+- 거리: 유클리드 `√Σ(xᵢ−yᵢ)²` 또는 절대거리 `Σ|xᵢ−yᵢ|`.
+- 최근접 K개 선정 → **다수결(majority vote)**.
+- 예시: 질의 `{Sunny, Cool, High, Strong}` → top-3 = Day2(No)·Day7(Yes)·Day11(Yes) → `2/3 ≥ 1/2` → **YES**.
+- 채점 포인트: 변환·스케일링 → 거리 계산 → top-k → 다수결 4단계 명시.
+- 방법론: [05. Classification]({{ site.baseurl }}/docs/lecture-notes/05-classification/)
+
+### Q2. Decision Tree — Information Gain 계산 (Information Gain Example 유형)
+
+**문제**
+- 데이터셋이 제시되고, **Information Gain을 계산**해 분할 속성을 고르고 classification.
+- 강의 **Information Gain Example**(Transportation 데이터) 수준.
+
+**풀이 포인트**
+- `Entropy = Σ −pⱼ·log₂pⱼ`, `Information Gain(S,A) = Entropy(S) − Σᵥ (|Sᵥ|/|S|)·Entropy(Sᵥ)`.
+- 매 노드에서 **Gain 최대 속성**을 분할 속성으로 선택 (Gini `Σ pⱼ²`로 대체 가능).
+- 예시: 전체 Entropy 1.571, Gain — Travel Cost 1.210(최대) → 루트, Car Ownership 0.534, Income 0.695, Gender 0.125. pure 노드는 잎, 나머지만 재귀 분할.
+- 채점 포인트: Entropy·Gain 식과 단계별 계산값, pure 여부 판정.
+- 방법론: [05. Classification]({{ site.baseurl }}/docs/lecture-notes/05-classification/)
 
 ## 06. Clustering
 

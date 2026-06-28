@@ -76,7 +76,23 @@ permalink: /docs/notes/past-exams-26/
 
 ## 04. Constraint Satisfaction (CSP)
 
-### Q. 4-Queens (보류)
+### Q1. 지도 색칠 (Map Coloring) — backtracking 효율화 + forward checking 추적
+
+**문제**
+- 호주 지도 색칠 CSP가 제시됨.
+- **Improving backtracking efficiency 3가지 전략**을 적용했을 때 탐색이 어떻게 진행되는지를, **forward checking** 방식으로 각 단계의 도메인 변화를 **그려서 표현**.
+
+**풀이 포인트**
+- 변수: `WA, NT, Q, NSW, V, SA, T` / 도메인: `{red, green, blue}` / 제약: 인접 지역은 색이 달라야 함.
+- 3가지 전략:
+  - **MRV** (Minimum Remaining Values): 남은 합법 값이 가장 적은 변수부터 → 실패를 빨리 발견.
+  - **Degree heuristic**: MRV 동률일 때 다른 미할당 변수에 제약을 가장 많이 거는 변수 선택. 초기엔 모든 도메인이 3으로 동률이므로, 인접 5개인 **SA가 먼저 선택**됨.
+  - **LCV** (Least Constraining Value): 값은 이웃의 선택지를 가장 적게 줄이는 값부터.
+- **Forward checking**: 할당할 때마다 인접 미할당 변수의 도메인에서 충돌 색을 제거하고, 어떤 변수의 도메인이 비면 즉시 backtrack.
+- 채점 포인트: 각 할당 단계마다 **변수별 남은 도메인을 표/그림으로 갱신**해 보여주는 것. (예: SA=red 할당 → WA·NT·Q·NSW·V 도메인에서 red 제거)
+- 방법론: [04. CSP]({{ site.baseurl }}/docs/lecture-notes/04-csp/)
+
+### Q2. 4-Queens (보류)
 
 - 4-Queens 관련 문제가 출제됨 — 세부는 **보류**.
 - **4-Queens example 참고할 것**: [04. CSP]({{ site.baseurl }}/docs/lecture-notes/04-csp/)의 forward checking 추적 예제(해: X1=2, X2=4, X3=1, X4=3) 및 강의 PDF `4.ConstraintSatisfactionProblem`의 4-Queens 예시.

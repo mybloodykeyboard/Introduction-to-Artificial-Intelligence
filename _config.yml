@@ -1,0 +1,47 @@
+title: 인공지능 개론 시험 정리
+description: 인공지능 개론 기출문제와 이론을 강의별·개념별·시험유형별로 정리한 위키
+remote_theme: just-the-docs/just-the-docs
+
+url: https://mybloodykeyboard.github.io
+baseurl: /Introduction-to-Artificial-Intelligence
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# 검색
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# 네비게이션
+heading_anchors: true
+color_scheme: light
+
+# 상단 우측 보조 링크
+aux_links:
+  "GitHub":
+    - "https://github.com/mybloodykeyboard/Introduction-to-Artificial-Intelligence"
+aux_links_new_tab: true
+
+# 각 페이지 하단 "이 페이지 수정" 링크
+gh_edit_link: true
+gh_edit_link_text: "이 페이지 수정하기"
+gh_edit_repository: "https://github.com/mybloodykeyboard/Introduction-to-Artificial-Intelligence"
+gh_edit_branch: "main"
+gh_edit_view_mode: "tree"
+
+# 푸터
+footer_content: "인공지능 개론 시험 정리 · 본인 학습용"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
